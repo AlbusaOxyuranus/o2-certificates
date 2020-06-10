@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\O2.Services.Certificates.Business\O2.Services.Certificates.Business.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -2,45 +2,40 @@
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using O2.Services.Certificates.API.Demo;
+using O2.Services.Certificates.API.Mappings;
 using O2.Services.Certificates.API.Models;
+using O2.Services.Certificates.Business.Services;
 
 namespace O2.Services.Certificates.API.Controllers
 {
-    //localhostL500/certificates
+    //localhost:5000/certificates
     [Route("certificates")]
     public class CertificatesController : Controller
     {
-        private readonly ICertificateGenerator _certificateGenerator;
+        private readonly ICertificatesService _certificatesService;
 
-        public CertificatesController( ICertificateGenerator certificateGenerator)
+        public CertificatesController( ICertificatesService certificatesService)
         {
-            _certificateGenerator = certificateGenerator;
+            _certificatesService = certificatesService;
         }
         private static long currentGroup = 1;
-        private static List<CertificateViewModel> _certificates = new List<CertificateViewModel>()
-        {
-            new CertificateViewModel()
-            {
-                Id =1, Name="Sample Certificate"
-            }
-        };
-        
+
         [HttpGet]
         [Route("")]
         public IActionResult Index()
         {
-            return View(_certificates);
+            return View(_certificatesService.GetAll().ToViewModel());
         }
         
         [HttpGet]
         [Route(("id"))]
         public IActionResult Details(long id)
         {
-            var certificate = _certificates.SingleOrDefault(c => c.Id == id);
+            var certificate = _certificatesService.GetById(id);
             if (certificate == null)
                 return NotFound();
             
-            return View(certificate);
+            return View(certificate.ToViewModel());
         }
 
         [HttpPost]
@@ -48,7 +43,7 @@ namespace O2.Services.Certificates.API.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(long id, CertificateViewModel model)
         {
-            var certificate = _certificates.SingleOrDefault(c => c.Id == id);
+            var certificate = _certificatesService.Update(model.ToServiceModel());
             if (certificate == null)
                 return NotFound();
             
@@ -66,10 +61,9 @@ namespace O2.Services.Certificates.API.Controllers
         [HttpPost]
         [Route("")]
         [ValidateAntiForgeryToken]
-        public IActionResult CreateRelly(CertificateViewModel model)
+        public IActionResult CreateReally(CertificateViewModel model)
         {
-            model.Id = _certificateGenerator.Next();
-            _certificates.Add(model);
+            _certificatesService.Add(model.ToServiceModel());
             return RedirectToAction("Index");
         }
     }

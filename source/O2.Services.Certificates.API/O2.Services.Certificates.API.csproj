@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\O2.Services.Certificates.Business.Impl\O2.Services.Certificates.Business.Impl.csproj" />
     <ProjectReference Include="..\O2.Services.Certificates.Business\O2.Services.Certificates.Business.csproj" />
   </ItemGroup>
 
