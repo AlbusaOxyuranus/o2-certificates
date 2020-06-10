@@ -1,0 +1,7 @@
+@model CertificateViewModel
+
+<form asp-controller="Certificates" asp-action="CreateRelly" method="post">
+    <label asp-for="Name">Name</label>
+    <input asp-for="Name"/>
+    <button type="submit">Create</button>
+</form>
