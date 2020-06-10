@@ -20,6 +20,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\O2.Services.Certificates.Business\O2.Services.Certificates.Business.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Update="Views\Certificates\Index.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
