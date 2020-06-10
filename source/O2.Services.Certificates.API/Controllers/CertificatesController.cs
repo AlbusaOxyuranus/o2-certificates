@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
-using O2.Services.Certificates.API.Demo;
+﻿using Microsoft.AspNetCore.Mvc;
 using O2.Services.Certificates.API.Mappings;
 using O2.Services.Certificates.API.Models;
 using O2.Services.Certificates.Business.Services;

@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using O2.Services.Certificates.Business.Impl.Services;
-using O2.Services.Certificates.Business.Services;
+using O2.Services.Certificates.API.IoC;
 
 namespace O2.Services.Certificates.API
 {
@@ -18,7 +13,7 @@ namespace O2.Services.Certificates.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddSingleton<ICertificatesService, InMemoryCertificatesService>();
+            services.AddBusiness();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,11 +31,7 @@ namespace O2.Services.Certificates.API
                     context.Response.Headers.Add("X.Powered-By", "Asp .Net Core: O2 Certificates");
                     return Task.CompletedTask;
                 }));
-
-             
-                    await next.Invoke();    
-             
-                
+                await next.Invoke();
             });
             
             app.UseStaticFiles();
