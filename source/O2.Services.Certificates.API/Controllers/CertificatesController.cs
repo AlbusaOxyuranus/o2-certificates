@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using O2.Services.Certificates.API.Demo;
 using O2.Services.Certificates.API.Models;
 
 namespace O2.Services.Certificates.API.Controllers
@@ -9,6 +10,12 @@ namespace O2.Services.Certificates.API.Controllers
     [Route("certificates")]
     public class CertificatesController : Controller
     {
+        private readonly ICertificateGenerator _certificateGenerator;
+
+        public CertificatesController( ICertificateGenerator certificateGenerator)
+        {
+            _certificateGenerator = certificateGenerator;
+        }
         private static long currentGroup = 1;
         private static List<CertificateViewModel> _certificates = new List<CertificateViewModel>()
         {
@@ -19,7 +26,7 @@ namespace O2.Services.Certificates.API.Controllers
         };
         
         [HttpGet]
-        [Route("")] //not needed because Index would ne used as default anyway
+        [Route("")]
         public IActionResult Index()
         {
             return View(_certificates);
@@ -61,7 +68,7 @@ namespace O2.Services.Certificates.API.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult CreateRelly(CertificateViewModel model)
         {
-            model.Id = ++currentGroup;
+            model.Id = _certificateGenerator.Next();
             _certificates.Add(model);
             return RedirectToAction("Index");
         }

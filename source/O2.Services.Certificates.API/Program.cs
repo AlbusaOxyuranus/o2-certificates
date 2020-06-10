@@ -14,11 +14,13 @@ namespace O2.Services.Certificates.API
     {
         public static void Main(string[] args)
         {
+            Console.WriteLine("########################### Startup application ############################");
             CreateWebHostBuilder(args).Build().Run();
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>();
+        
     }
 }
