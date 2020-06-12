@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using O2.Services.Certificates.API.Demo.Filters;
 using O2.Services.Certificates.API.Mappings;
@@ -23,17 +25,17 @@ namespace O2.Services.Certificates.API.Controllers
         
         [HttpGet]
         [Route("")]
-        public IActionResult Index()
+        public async Task<IActionResult> IndexAsync(CancellationToken ct)
         {
-            throw new ArgumentException("bootttttt!");
-            return View(_certificatesService.GetAll().ToViewModel());
+            var result = await _certificatesService.GetAllAsync(ct);
+            return View(result.ToViewModel());
         }
         
         [HttpGet]
         [Route(("id"))]
-        public IActionResult Details(long id)
+        public async Task<IActionResult> DetailsAsync(long id,CancellationToken ct)
         {
-            var certificate = _certificatesService.GetById(id);
+            var certificate = await _certificatesService.GetByIdAsync(id,ct);
             if (certificate == null)
                 return NotFound();
             
@@ -44,14 +46,14 @@ namespace O2.Services.Certificates.API.Controllers
         [HttpPost]
         [Route("{id}")]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(long id, CertificateViewModel model)
+        public async Task<IActionResult> EditAsync(long id, CertificateViewModel model,CancellationToken ct)
         {
-            var certificate = _certificatesService.Update(model.ToServiceModel());
+            var certificate = await _certificatesService.UpdateAsync(model.ToServiceModel(),ct);
             if (certificate == null)
                 return NotFound();
             
             certificate.Name = model.Name;
-            return RedirectToAction("Index");
+            return RedirectToAction("IndexAsync");
         }
 
         [HttpGet]
@@ -65,10 +67,10 @@ namespace O2.Services.Certificates.API.Controllers
         [HttpPost]
         [Route("")]
         [ValidateAntiForgeryToken]
-        public IActionResult CreateReally(CertificateViewModel model)
+        public async Task<IActionResult> CreateReally(CertificateViewModel model,CancellationToken ct)
         {
-            _certificatesService.Add(model.ToServiceModel());
-            return RedirectToAction("Index");
+            await _certificatesService.AddAsync(model.ToServiceModel(),ct);
+            return RedirectToAction("IndexAsync");
         }
     }
 }
