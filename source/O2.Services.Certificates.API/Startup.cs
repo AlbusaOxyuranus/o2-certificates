@@ -33,7 +33,7 @@ namespace O2.Services.Certificates.API
             
             //injecting POCO, but prettiuer :)
             services.ConfigurePOCO<SomeRootConfiguration>(_config.GetSection("SomeRoot"));
-            
+            services.ConfigurePOCO<DemoSecretsConfiguration>(_config.GetSection("DemoSecrets"));
             var containerBuilder = new ContainerBuilder();
             containerBuilder.RegisterModule<AutofacModule>();
             containerBuilder.Populate(services);

@@ -12,13 +12,15 @@ namespace O2.Services.Certificates.API.Controllers
     public class CertificatesController : Controller
     {
         private readonly ICertificatesService _certificatesService;
+        private readonly DemoSecretsConfiguration _secrets;
         private readonly SomeRootConfiguration _config;
 
         public CertificatesController(ICertificatesService certificatesService,
-            IOptions<SomeRootConfiguration> config)
+            IOptions<SomeRootConfiguration> config, DemoSecretsConfiguration secrets)
         {
             _certificatesService = certificatesService;
             _config = config.Value;
+            _secrets = secrets;
         }
         private static long _currentCertificate = 1;
 
