@@ -21,7 +21,7 @@ namespace O2.Services.Certificates.API.Demo.Middlewares
             await _next(context);
             watch.Stop();
             Interlocked.Increment(ref _requestCounter);
-            logger.LogWarning("Request {requestNumber} took {request}ms",_requestCounter, watch.ElapsedMilliseconds);
+            logger.LogTrace("Request {requestNumber} took {request}ms",_requestCounter, watch.ElapsedMilliseconds);
         }
     }
 }
