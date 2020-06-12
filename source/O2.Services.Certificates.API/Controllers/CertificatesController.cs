@@ -22,8 +22,7 @@ namespace O2.Services.Certificates.API.Controllers
             _config = config.Value;
             _secrets = secrets;
         }
-        private static long _currentCertificate = 1;
-
+        
         [HttpGet]
         [Route("")]
         public IActionResult Index()
