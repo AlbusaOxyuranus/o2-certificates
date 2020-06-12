@@ -27,6 +27,7 @@ namespace O2.Services.Certificates.API
                 option.Filters.Add<DemoActionFilter>();
             });
             services.AddTransient<RequestTimingFactoryMiddleware>();
+            services.AddTransient<DemoExceptionFilter>();
             services.AddBusiness();
         }
 

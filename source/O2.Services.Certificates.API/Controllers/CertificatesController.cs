@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
 using O2.Services.Certificates.API.Demo.Filters;
 using O2.Services.Certificates.API.Mappings;
 using O2.Services.Certificates.API.Models;
@@ -7,6 +8,8 @@ using O2.Services.Certificates.Business.Services;
 namespace O2.Services.Certificates.API.Controllers
 {
 
+    // [ServiceFilter(typeof(DemoExceptionFilter))]
+    [DemoExceptionFilterFactoryAttribute]
     //localhost:5000/certificates
     [Route("certificates")]
     public class CertificatesController : Controller
@@ -22,6 +25,7 @@ namespace O2.Services.Certificates.API.Controllers
         [Route("")]
         public IActionResult Index()
         {
+            throw new ArgumentException("bootttttt!");
             return View(_certificatesService.GetAll().ToViewModel());
         }
         
