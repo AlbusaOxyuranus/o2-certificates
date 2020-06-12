@@ -40,22 +40,22 @@ namespace O2.Services.Certificates.API
             var config= new LoggingConfiguration();
             var consoleTarget = new ColoredConsoleTarget("coloredConsole")
             {
-                Layout = @"${date:format=HH\:mm\:ss} ${message} ${exception}"
+                Layout = @"${date:format=HH\:mm\:ss} ${logger} ${message} ${exception}"
             };
             
             config.AddTarget(consoleTarget);
             
-            var fileTarget = new FileTarget("file")
-            {
-                FileName = "${basedir}/file.log",
-                Layout = @"${date:format=HH\:mm\:ss} ${message} ${exception} ${ndlc}"
-            };
+            // var fileTarget = new FileTarget("file")
+            // {
+            //     FileName = "${basedir}/file.log",
+            //     Layout = @"${date:format=HH\:mm\:ss} ${message} ${exception} ${ndlc}"
+            // };
+            //
+            // config.AddTarget(fileTarget);
             
-            config.AddTarget(fileTarget);
-            
-            config.AddRule(LogLevel.Trace, LogLevel.Debug, consoleTarget,"O2.Services.Certificates.API.IoC.*");
-            config.AddRule(LogLevel.Info, LogLevel.Fatal, consoleTarget);
-            config.AddRule(LogLevel.Warn, LogLevel.Fatal, fileTarget);
+            config.AddRule(LogLevel.Trace, LogLevel.Info, consoleTarget,"O2.*");
+            config.AddRule(LogLevel.Warn, LogLevel.Fatal, consoleTarget);
+            // config.AddRule(LogLevel.Warn, LogLevel.Fatal, fileTarget);
             LogManager.Configuration = config;
         }
     }

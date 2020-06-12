@@ -1,8 +1,10 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using O2.Services.Certificates.API.Demo.Middlewares;
 using O2.Services.Certificates.API.IoC;
 
 namespace O2.Services.Certificates.API
@@ -20,7 +22,7 @@ namespace O2.Services.Certificates.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            
+            services.AddTransient<RequestTimingFactoryMiddleware>();
             services.AddBusiness();
         }
 
@@ -32,6 +34,24 @@ namespace O2.Services.Certificates.API
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseStaticFiles();
+            
+            app.MapWhen(
+                context => context.Request.Headers.ContainsKey("ping"),
+                builder =>
+                {
+                    builder.UseMiddleware<RequestTimingAdHocMiddleware>();
+                    builder.Run(async (context) => { await context.Response.WriteAsync("pong from header"); });
+                });
+            app.Map("/ping", builder =>
+            {
+                builder.UseMiddleware<RequestTimingFactoryMiddleware>();
+                builder.Run(async (context) =>
+                {
+                    await context.Response.WriteAsync("pong from path");
+                });
+            });
+    
             app.Use(async (context, next) =>
             {
                 context.Response.OnStarting((() =>
@@ -41,10 +61,12 @@ namespace O2.Services.Certificates.API
                 }));
                 await next.Invoke();
             });
-            
-            app.UseStaticFiles();
-            
             app.UseMvc();
+                       
+            app.Run(async (context) =>
+            {
+                await context.Response.WriteAsync("No middlewares could handle the request");
+            });
         }
     }
 }
