@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using O2.Services.Certificates.API.Demo;
 using O2.Services.Certificates.API.Mappings;
 using O2.Services.Certificates.API.Models;
 using O2.Services.Certificates.Business.Services;
@@ -10,12 +12,15 @@ namespace O2.Services.Certificates.API.Controllers
     public class CertificatesController : Controller
     {
         private readonly ICertificatesService _certificatesService;
+        private readonly SomeRootConfiguration _config;
 
-        public CertificatesController( ICertificatesService certificatesService)
+        public CertificatesController(ICertificatesService certificatesService,
+            IOptions<SomeRootConfiguration> config)
         {
             _certificatesService = certificatesService;
+            _config = config.Value;
         }
-        private static long currentGroup = 1;
+        private static long _currentCertificate = 1;
 
         [HttpGet]
         [Route("")]
