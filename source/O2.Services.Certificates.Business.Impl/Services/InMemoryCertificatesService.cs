@@ -35,7 +35,7 @@ namespace O2.Services.Certificates.Business.Impl.Services
             {
                 return null;
             }
-
+            
             toUpdate.Name = certificate.Name;
             return Task.FromResult(toUpdate);
         }
@@ -47,9 +47,9 @@ namespace O2.Services.Certificates.Business.Impl.Services
             return Task.FromResult(certificate);
         }
 
-        private async Task<int> CallExternalServiceAsync(CancellationToken ct)
+        private static async Task<int> CallExternalServiceAsync(CancellationToken ct)
         {
-            await Task.Delay(1000);
+            await Task.Delay(1000, ct);
             return RandomGenerator.Next();
         }
     }

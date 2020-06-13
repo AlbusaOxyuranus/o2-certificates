@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "O2.Services.Certificates.Bu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "O2.Services.Certificates.Business.Impl", "O2.Services.Certificates.Business.Impl\O2.Services.Certificates.Business.Impl.csproj", "{ED5BD4EA-64E2-4EE5-BEFD-8DA2ABA6320B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "O2.Services.Certificates.Data", "O2.Services.Certificates.Data\O2.Services.Certificates.Data.csproj", "{3B255365-212A-4A47-B7AD-E7239F44C316}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{ED5BD4EA-64E2-4EE5-BEFD-8DA2ABA6320B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED5BD4EA-64E2-4EE5-BEFD-8DA2ABA6320B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED5BD4EA-64E2-4EE5-BEFD-8DA2ABA6320B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B255365-212A-4A47-B7AD-E7239F44C316}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B255365-212A-4A47-B7AD-E7239F44C316}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B255365-212A-4A47-B7AD-E7239F44C316}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B255365-212A-4A47-B7AD-E7239F44C316}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

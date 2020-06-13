@@ -1,17 +1,12 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using O2.Services.Certificates.API.Demo.Filters;
 using O2.Services.Certificates.API.Mappings;
 using O2.Services.Certificates.API.Models;
 using O2.Services.Certificates.Business.Services;
 
 namespace O2.Services.Certificates.API.Controllers
 {
-
-    // [ServiceFilter(typeof(DemoExceptionFilter))]
-    [DemoExceptionFilterFactoryAttribute]
     //localhost:5000/certificates
     [Route("certificates")]
     public class CertificatesController : Controller
@@ -42,7 +37,6 @@ namespace O2.Services.Certificates.API.Controllers
             return View(certificate.ToViewModel());
         }
         
-        [DemoActionFilter]
         [HttpPost]
         [Route("{id}")]
         [ValidateAntiForgeryToken]
@@ -63,7 +57,6 @@ namespace O2.Services.Certificates.API.Controllers
             return View();
         }
         
-        [DemoActionFilter]
         [HttpPost]
         [Route("")]
         [ValidateAntiForgeryToken]

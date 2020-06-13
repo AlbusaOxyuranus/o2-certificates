@@ -4,8 +4,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using O2.Services.Certificates.API.Demo.Filters;
-using O2.Services.Certificates.API.Demo.Middlewares;
 using O2.Services.Certificates.API.IoC;
 
 namespace O2.Services.Certificates.API
@@ -22,12 +20,7 @@ namespace O2.Services.Certificates.API
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(option =>
-            {
-                option.Filters.Add<DemoActionFilter>();
-            });
-            services.AddTransient<RequestTimingFactoryMiddleware>();
-            services.AddTransient<DemoExceptionFilter>();
+            services.AddMvc();
             services.AddBusiness();
         }
 
@@ -45,12 +38,12 @@ namespace O2.Services.Certificates.API
                 context => context.Request.Headers.ContainsKey("ping"),
                 builder =>
                 {
-                    builder.UseMiddleware<RequestTimingAdHocMiddleware>();
+                    // builder.UseMiddleware<RequestTimingAdHocMiddleware>();
                     builder.Run(async (context) => { await context.Response.WriteAsync("pong from header"); });
                 });
             app.Map("/ping", builder =>
             {
-                builder.UseMiddleware<RequestTimingFactoryMiddleware>();
+                // builder.UseMiddleware<RequestTimingFactoryMiddleware>();
                 builder.Run(async (context) =>
                 {
                     await context.Response.WriteAsync("pong from path");

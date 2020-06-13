@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Runtime.ConstrainedExecution;
 using O2.Services.Certificates.API.Models;
 using O2.Services.Certificates.Business.Models;
 
@@ -11,12 +10,42 @@ namespace O2.Services.Certificates.API.Mappings
     {
         public static CertificateViewModel ToViewModel(this Certificate model)
         {
-            return model != null ? new CertificateViewModel() { Id = model.Id,Name = model.Name} : null;
+            return model != null ? new CertificateViewModel()
+            {
+                Id = model.Id,
+                Name = model.Name,
+                ShortNumber = model.ShortNumber,
+                Serial = model.Serial,
+                Number = model.Number,
+                Firstname = model.Firstname,
+                Lastname = model.Lastname,
+                Middlename = model.Middlename,
+                DateOfCert = model.DateOfCert,
+                Education = model.Education,
+                Lock = model.Lock,
+                Visible = model.Visible,
+                LockInfo = model.LockInfo
+            } : null;
         }
 
         public static Certificate ToServiceModel(this CertificateViewModel model)
         {
-            return model != null ? new Certificate() { Id = model.Id,Name = model.Name} : null;
+            return model != null ? new Certificate()
+            {
+                Id = model.Id,
+                Name = model.Name,
+                ShortNumber = model.ShortNumber,
+                Serial = model.Serial,
+                Number = model.Number,
+                Firstname = model.Firstname,
+                Lastname = model.Lastname,
+                Middlename = model.Middlename,
+                DateOfCert = model.DateOfCert,
+                Education = model.Education,
+                Lock = model.Lock,
+                Visible = model.Visible,
+                LockInfo = model.LockInfo
+            } : null;
         }
 
         public static IReadOnlyCollection<CertificateViewModel> ToViewModel(this IReadOnlyCollection<Certificate> models)
