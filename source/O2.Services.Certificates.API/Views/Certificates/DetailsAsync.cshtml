@@ -1,0 +1,43 @@
+@using O2.Services.Certificates.API.Mappings
+@model CertificateViewModel
+
+<form asp-controller="Certificates" asp-action="EditAsync" asp-route-id="@Model.Id" method="post">
+      <label asp-for="Name">Name</label>
+      <input asp-for="Name"/>
+      <br/>
+      <label asp-for="Serial">Serial</label>
+      <input asp-for="Serial"/>
+      <br/>
+      <label asp-for="Number">Number</label>
+      <input asp-for="Number" />
+      <br/>
+      <label asp-for="ShortNumber">ShortNumber</label>
+      <input asp-for="ShortNumber"/>
+      <br/>
+      <label asp-for="Firstname">Firstname</label>
+      <input asp-for="Firstname"/>
+      <br/>
+      <label asp-for="Lastname">Lastname</label>
+      <input asp-for="Lastname"/>
+      <br/>
+      <label asp-for="Middlename">Middlename</label>
+      <input asp-for="Middlename"/>
+      <br/>
+      <label asp-for="DateOfCert">DateOfCert</label>
+      <input type="date" asp-for="DateOfCert" value="@DateTime.Now"/>
+      <br/>
+      <label asp-for="Education">Education</label>
+      <input asp-for="Education"/>
+      <br/>
+      <label asp-for="LockInfo">LockInfo</label>
+      <input asp-for="LockInfo"/>
+      <br/>
+      <label asp-for="Lock">Lock</label>
+      <br/>
+      <input type="checkbox" asp-for="Lock"/>
+      <br/>
+      <label asp-for="Visible">Visible</label>
+      <br/>
+      <input type="checkbox" asp-for="Visible"/>
+    <button type="submit">Save</button>
+</form>

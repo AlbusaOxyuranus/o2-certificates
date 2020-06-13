@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "O2.Services.Certificates.API", "O2.Services.Certificates.API\O2.Services.Certificates.API.csproj", "{0D9590BC-9C24-42E3-BD2D-50321D233BE1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "O2.Services.Certificates.Model", "O2.Services.Certificates.Model\O2.Services.Certificates.Model.csproj", "{28FB3DAB-525B-4722-89E6-931FBE785C77}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "O2.Services.Certificates.Business", "O2.Services.Certificates.Business\O2.Services.Certificates.Business.csproj", "{D66C1E39-C9D5-41C9-B6DA-5F181B041723}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "O2.Services.Certificates.Business.Impl", "O2.Services.Certificates.Business.Impl\O2.Services.Certificates.Business.Impl.csproj", "{ED5BD4EA-64E2-4EE5-BEFD-8DA2ABA6320B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "O2.Services.Certificates.Data", "O2.Services.Certificates.Data\O2.Services.Certificates.Data.csproj", "{3B255365-212A-4A47-B7AD-E7239F44C316}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0D9590BC-9C24-42E3-BD2D-50321D233BE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D9590BC-9C24-42E3-BD2D-50321D233BE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D9590BC-9C24-42E3-BD2D-50321D233BE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D9590BC-9C24-42E3-BD2D-50321D233BE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28FB3DAB-525B-4722-89E6-931FBE785C77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28FB3DAB-525B-4722-89E6-931FBE785C77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28FB3DAB-525B-4722-89E6-931FBE785C77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28FB3DAB-525B-4722-89E6-931FBE785C77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D66C1E39-C9D5-41C9-B6DA-5F181B041723}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D66C1E39-C9D5-41C9-B6DA-5F181B041723}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D66C1E39-C9D5-41C9-B6DA-5F181B041723}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D66C1E39-C9D5-41C9-B6DA-5F181B041723}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED5BD4EA-64E2-4EE5-BEFD-8DA2ABA6320B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED5BD4EA-64E2-4EE5-BEFD-8DA2ABA6320B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED5BD4EA-64E2-4EE5-BEFD-8DA2ABA6320B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED5BD4EA-64E2-4EE5-BEFD-8DA2ABA6320B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B255365-212A-4A47-B7AD-E7239F44C316}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B255365-212A-4A47-B7AD-E7239F44C316}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B255365-212A-4A47-B7AD-E7239F44C316}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B255365-212A-4A47-B7AD-E7239F44C316}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {23F8DABF-BA7A-44FE-AF97-C822CA289AEE}
+	EndGlobalSection
+EndGlobal
