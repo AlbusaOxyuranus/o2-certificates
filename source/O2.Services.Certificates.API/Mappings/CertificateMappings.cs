@@ -6,6 +6,21 @@ using O2.Services.Certificates.Business.Models;
 
 namespace O2.Services.Certificates.API.Mappings
 {
+    public static class UnixDateExtensions
+    {
+        private static readonly DateTime UnixEpoch =
+            new DateTime(1970, 1, 1, 0, 0, 0, 0).ToLocalTime();
+
+        public static DateTime ConvertToDateTime(this long seconds, bool isSeconds = true)
+        {
+            return isSeconds ? UnixEpoch.AddSeconds(seconds) : UnixEpoch.AddMinutes(seconds);
+        }
+
+        public static long ConvertToUnixTime(this DateTime datetime, bool isSeconds = true)
+        {
+            return isSeconds ? (long) (datetime  - UnixEpoch).TotalSeconds : (long) (datetime - UnixEpoch).TotalMinutes;
+        }
+    }
     public static class CertificateMappings
     {
         public static CertificateViewModel ToViewModel(this Certificate model)
@@ -20,10 +35,10 @@ namespace O2.Services.Certificates.API.Mappings
                 Firstname = model.Firstname,
                 Lastname = model.Lastname,
                 Middlename = model.Middlename,
-                DateOfCert = model.DateOfCert,
+                DateOfCert = model.DateOfCert.ConvertToDateTime(),
                 Education = model.Education,
-                Lock = model.Lock,
-                Visible = model.Visible,
+                Lock = model.Lock.GetValueOrDefault(),
+                Visible = model.Visible.GetValueOrDefault(),
                 LockInfo = model.LockInfo
             } : null;
         }
@@ -40,7 +55,7 @@ namespace O2.Services.Certificates.API.Mappings
                 Firstname = model.Firstname,
                 Lastname = model.Lastname,
                 Middlename = model.Middlename,
-                DateOfCert = model.DateOfCert,
+                DateOfCert = model.DateOfCert.ConvertToUnixTime(),
                 Education = model.Education,
                 Lock = model.Lock,
                 Visible = model.Visible,

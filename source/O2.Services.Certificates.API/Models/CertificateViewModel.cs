@@ -1,3 +1,5 @@
+using System;
+
 namespace O2.Services.Certificates.API.Models
 {
     public class CertificateViewModel
@@ -9,7 +11,7 @@ namespace O2.Services.Certificates.API.Models
 
         public string Number { get; set; }
 
-        public long DateOfCert { get; set; }
+        public DateTime DateOfCert { get; set; }
 
         public string Middlename { get; set; }
 
@@ -19,10 +21,10 @@ namespace O2.Services.Certificates.API.Models
 
         public string Education { get; set; }
 
-        public bool? Visible { get; set; }
+        public bool Visible { get; set; }
 
         public string LockInfo { get; set; }
-        
-        public bool? Lock { get; set; }
+
+        public bool Lock { get; set; }
     }
 }
