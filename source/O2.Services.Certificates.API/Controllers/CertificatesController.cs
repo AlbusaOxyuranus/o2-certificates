@@ -19,51 +19,56 @@ namespace O2.Services.Certificates.API.Controllers
         }
         
         [HttpGet]
+        [Route("{id}")]
+        public async Task<IActionResult> GetByIdAsync(long id, CancellationToken ct)
+        {
+            var certificate = await _certificatesService.GetByIdAsync(id, ct);
+
+            if (certificate == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(certificate.ToViewModel());
+        }
+        
+        [HttpGet]
         [Route("")]
-        public async Task<IActionResult> IndexAsync(CancellationToken ct)
+        public async Task<IActionResult> GetAllAsync(CancellationToken ct)
         {
             var result = await _certificatesService.GetAllAsync(ct);
-            return View(result.ToViewModel());
-        }
-        
-        [HttpGet]
-        [Route(("id"))]
-        public async Task<IActionResult> DetailsAsync(long id,CancellationToken ct)
-        {
-            var certificate = await _certificatesService.GetByIdAsync(id,ct);
-            if (certificate == null)
-                return NotFound();
-            
-            return View(certificate.ToViewModel());
-        }
-        
-        [HttpPost]
-        [Route("{id}")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditAsync(long id, CertificateViewModel model,CancellationToken ct)
-        {
-            var certificate = await _certificatesService.UpdateAsync(model.ToServiceModel(),ct);
-            if (certificate == null)
-                return NotFound();
-            
-            certificate.Name = model.Name;
-            return RedirectToAction("IndexAsync");
+            return Ok(result.ToViewModel());
         }
 
-        [HttpGet]
-        [Route("create")]
-        public IActionResult Create()
-        {
-            return View();
-        }
         
+        [HttpPut]
+        [Route("{id}")]
+        public async Task<IActionResult> UpdateAsync(long id, CertificateViewModel model, CancellationToken ct)
+        {
+            model.Id = id; //not needed when we move to MediatR
+            var certificate = await _certificatesService.UpdateAsync(model.ToServiceModel(), ct);
+            
+            return Ok(certificate.ToViewModel());
+        }
+
+        [HttpPut]
         [HttpPost]
         [Route("")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateReally(CertificateViewModel model,CancellationToken ct)
+        public async Task<IActionResult> AddAsync(CertificateViewModel model, CancellationToken ct)
         {
-            await _certificatesService.AddAsync(model.ToServiceModel(),ct);
-            return RedirectToAction("IndexAsync");
+            model.Id = 0; //not needed when we move to MediatR
+            var certificate = await _certificatesService.AddAsync(model.ToServiceModel(), ct);
+
+            return CreatedAtAction(nameof(GetByIdAsync),new { id = certificate.Id }, certificate.ToViewModel());
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> RemoveAsync(long id, CancellationToken ct)
+        {
+            await _certificatesService.RemoveAsync(id, ct);
+
+            return NoContent();
         }
     }
 }

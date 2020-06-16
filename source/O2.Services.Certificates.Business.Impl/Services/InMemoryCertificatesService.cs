@@ -47,6 +47,13 @@ namespace O2.Services.Certificates.Business.Impl.Services
             return Task.FromResult(certificate);
         }
 
+        public async Task RemoveAsync(long id, CancellationToken ct)
+        {
+            await Task.Delay(1000,ct);
+            var toDelete = _certificates.SingleOrDefault(x => x.Id == id);
+            _certificates.Remove(toDelete);
+        }
+
         private static async Task<int> CallExternalServiceAsync(CancellationToken ct)
         {
             await Task.Delay(1000, ct);
