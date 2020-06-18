@@ -8,4 +8,15 @@
       <ProjectReference Include="..\O2.Services.Certificates.Business\O2.Services.Certificates.Business.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Services\Import_DB_PFR.json" />
+      <Content Include="Services\Import_DB_PFR.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
 </Project>
