@@ -11,7 +11,18 @@ namespace O2.Services.Certificates.Business.Impl.Services
     public class InMemoryCertificatesService: ICertificatesService
     {
         private static readonly Random RandomGenerator = new Random();
-        private readonly List<Certificate> _certificates = new List<Certificate>();
+        private readonly List<Certificate> _certificates = new List<Certificate>()
+        {
+            new Certificate()
+            {
+                Id = 0,
+                Number = "00001202020202",
+                Serial = "A",
+                ShortNumber = 1,
+                Firstname = "Denis",
+                Lastname = "Prokhorchik"
+            }
+        };
         private long _currentCertificate = 0;
         
         public Task<IReadOnlyCollection<Certificate>> GetAllAsync(CancellationToken ct)
