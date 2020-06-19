@@ -26,4 +26,4 @@ FROM build AS publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "O2.Services.Certificates.API"]
+ENTRYPOINT ["dotnet", "O2.Services.Certificates.API.dll"]
